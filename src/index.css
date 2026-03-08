@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 156 100% 3%;
+    --foreground: 156 20% 88%;
+
+    --card: 156 80% 4%;
+    --card-foreground: 156 20% 88%;
+
+    --popover: 156 80% 4%;
+    --popover-foreground: 156 20% 88%;
+
+    --primary: 357 96% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 357 70% 40%;
+    --secondary-foreground: 156 20% 88%;
+
+    --muted: 156 30% 10%;
+    --muted-foreground: 156 15% 45%;
+
+    --accent: 357 96% 72%;
+    --accent-foreground: 156 100% 3%;
+
+    --destructive: 357 96% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 156 25% 13%;
+    --input: 156 25% 13%;
+    --ring: 357 96% 60%;
+
+    --radius: 0.5rem;
+
+    /* Custom Xeyronox tokens */
+    --xr-bg: 156 100% 3%;
+    --xr-bg2: 156 80% 4%;
+    --xr-bg3: 156 60% 6%;
+    --xr-purple: 270 70% 55%;
+    --xr-purple-dark: 270 60% 40%;
+    --xr-purple-light: 270 80% 70%;
+    --xr-magenta: 357 100% 65%;
+    --xr-dim: 156 20% 35%;
+    --xr-text: 156 20% 88%;
+    --xr-white: 156 30% 95%;
+    --xr-green: 155 100% 50%;
+    --xr-cyan: 190 100% 47%;
+    --xr-orange: 28 100% 50%;
+    --xr-red: 357 96% 60%;
+    --xr-yellow: 50 100% 63%;
+    --xr-telegram: 200 82% 55%;
+
+    --xr-glow: 0 0 20px hsl(357 96% 60% / 0.4);
+    --xr-glow-strong: 0 0 40px hsl(357 96% 60% / 0.6);
+    --xr-glow-purple: 0 0 20px hsl(270 70% 55% / 0.4);
+
+    --sidebar-background: 156 100% 3%;
+    --sidebar-foreground: 156 20% 88%;
+    --sidebar-primary: 357 96% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 156 30% 10%;
+    --sidebar-accent-foreground: 156 20% 88%;
+    --sidebar-border: 156 25% 13%;
+    --sidebar-ring: 357 96% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  ::selection {
+    background: hsl(357 96% 60% / 0.4);
+    color: hsl(156 30% 95%);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(156 100% 3%);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(357 96% 60% / 0.3);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(357 96% 60% / 0.6);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .xr-glow {
+    box-shadow: var(--xr-glow);
+  }
+  .xr-glow-strong {
+    box-shadow: var(--xr-glow-strong);
+  }
+  .xr-border-glow {
+    border: 1px solid hsl(357 96% 60% / 0.3);
+  }
+
+  .xr-card {
+    @apply bg-card rounded-lg xr-border-glow;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .xr-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--xr-glow-strong);
+  }
+
+  .xr-terminal {
+    @apply bg-card rounded-lg overflow-hidden;
+    border: 1px solid hsl(357 96% 60% / 0.2);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .xr-title-3d {
+    text-shadow:
+      0 1px 0 hsl(357 96% 50%),
+      0 2px 0 hsl(357 80% 45%),
+      0 3px 0 hsl(357 70% 40%),
+      0 4px 0 hsl(357 60% 35%),
+      0 5px 10px rgba(0,0,0,0.4),
+      0 0 40px hsl(357 96% 60% / 0.5);
+  }
+
+  .xr-btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .xr-btn-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, hsl(357 96% 60% / 0.2), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+  }
+  .xr-btn-shine:hover::after {
+    left: 150%;
+  }
+
+  .xr-grid-bg {
+    background-image:
+      linear-gradient(hsl(357 96% 60% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(357 96% 60% / 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .xr-text-gradient {
+    background: linear-gradient(135deg, hsl(357 96% 60%), hsl(357 96% 72%), hsl(357 100% 65%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .xr-glitch {
+    position: relative;
+  }
+  .xr-glitch:hover .xr-glitch-text {
+    animation: glitch-skew 0.5s ease-in-out;
+  }
+  .xr-glitch:hover .xr-glitch-text::before,
+  .xr-glitch:hover .xr-glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .xr-glitch:hover .xr-glitch-text::before {
+    animation: glitch-1 0.3s linear infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    -webkit-text-fill-color: initial;
+    color: hsl(357 100% 65%);
+    text-shadow: -2px 0 hsl(357 96% 60%);
+  }
+  .xr-glitch:hover .xr-glitch-text::after {
+    animation: glitch-2 0.3s linear infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    -webkit-text-fill-color: initial;
+    color: hsl(357 96% 72%);
+    text-shadow: 2px 0 hsl(155 100% 50%);
+  }
+
+  .xr-neon {
+    text-shadow: 0 0 7px hsl(357 96% 60%), 0 0 20px hsl(357 96% 60% / 0.5), 0 0 40px hsl(357 96% 60% / 0.3);
+  }
+}
+
+@keyframes grid-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+.xr-grid-animate {
+  animation: grid-move 8s linear infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px hsl(357 96% 60% / 0.3); }
+  50% { box-shadow: 0 0 25px hsl(357 96% 60% / 0.6); }
+}
+.xr-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes glitch-1 {
+  0% { transform: translate(0); }
+  20% { transform: translate(-3px, 2px); }
+  40% { transform: translate(3px, -2px); }
+  60% { transform: translate(-2px, 1px); }
+  80% { transform: translate(2px, -1px); }
+  100% { transform: translate(0); }
+}
+@keyframes glitch-2 {
+  0% { transform: translate(0); }
+  20% { transform: translate(3px, -2px); }
+  40% { transform: translate(-3px, 2px); }
+  60% { transform: translate(2px, -1px); }
+  80% { transform: translate(-2px, 1px); }
+  100% { transform: translate(0); }
+}
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  10% { transform: skew(-2deg); }
+  20% { transform: skew(3deg); }
+  30% { transform: skew(-1deg); }
+  40% { transform: skew(2deg); }
+  50% { transform: skew(0deg); }
+  100% { transform: skew(0deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.xr-cursor-blink {
+  animation: blink 1s step-end infinite;
+}
