@@ -73,9 +73,14 @@ export default function HeroSection() {
           ))}
         </motion.div>
 
+        {/* Credly Badge */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.85 }}>
+          <CredlyBadge badgeId="289c3a7e-2ca0-41d2-a236-c34a064a59f8" />
+        </motion.div>
+
         {/* Timeline */}
-        <motion.div className="flex items-center justify-center gap-4 text-xs text-muted-foreground"
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
+        <motion.div className="flex items-center justify-center gap-4 text-xs text-muted-foreground mt-8"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
           <span className="px-3 py-1 rounded bg-muted border border-border">Black Hat</span>
           <div className="flex items-center gap-1">
             <span className="w-8 h-px bg-border" />
