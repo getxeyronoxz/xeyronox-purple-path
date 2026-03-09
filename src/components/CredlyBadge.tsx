@@ -1,37 +1,34 @@
-import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import badgeImg from '@/assets/isc2-candidate-badge.png';
 
-interface CredlyBadgeProps {
-  badgeId: string;
-  width?: number;
-  height?: number;
-}
-
-export default function CredlyBadge({ badgeId, width = 150, height = 270 }: CredlyBadgeProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Create the badge div
-    const badgeDiv = document.createElement('div');
-    badgeDiv.setAttribute('data-iframe-width', String(width));
-    badgeDiv.setAttribute('data-iframe-height', String(height));
-    badgeDiv.setAttribute('data-share-badge-id', badgeId);
-    badgeDiv.setAttribute('data-share-badge-host', 'https://www.credly.com');
-
-    if (containerRef.current) {
-      containerRef.current.innerHTML = '';
-      containerRef.current.appendChild(badgeDiv);
-    }
-
-    // Load Credly embed script
-    const script = document.createElement('script');
-    script.src = '//cdn.credly.com/assets/utilities/embed.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      script.remove();
-    };
-  }, [badgeId, width, height]);
-
-  return <div ref={containerRef} className="flex justify-center" />;
+export default function CredlyBadge() {
+  return (
+    <motion.div
+      className="flex flex-col items-center gap-3"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.85 }}
+    >
+      <div
+        className="relative w-[140px] h-[140px] select-none pointer-events-none"
+        onContextMenu={(e) => e.preventDefault()}
+        draggable={false}
+      >
+        <img
+          src={badgeImg}
+          alt="ISC2 Candidate Badge"
+          className="w-full h-full object-contain select-none pointer-events-none"
+          draggable={false}
+          onContextMenu={(e) => e.preventDefault()}
+          style={{ WebkitUserDrag: 'none' } as React.CSSProperties}
+        />
+        {/* Invisible overlay to prevent interaction */}
+        <div className="absolute inset-0 z-10" onContextMenu={(e) => e.preventDefault()} />
+      </div>
+      <div className="text-center">
+        <p className="text-sm font-medium text-foreground">ISC2 Candidate</p>
+        <p className="text-xs text-muted-foreground">Issued by ISC2 · 2026</p>
+      </div>
+    </motion.div>
+  );
 }
